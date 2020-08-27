@@ -1,15 +1,16 @@
 import React from 'react';
-import '../assets/styles/icons/css/fontello.css'
+import imageCard from '../assets/images/construction.png';
 
 function Cart () {
-    return( <>
-        <ul class="navbar-nav ml-md-auto justify-content-end">
-            <li class="nav-item dropdown">
-                <button class="btn btn-light" type="button" data-toggle="modal" data-target="#cart-sidebar">
-                    <span class="icon-cart" />
-                </button>
-            </li>
-        </ul>
+    return (<>
+        <div class="d-flex justify-content-center" style={{padding: 50}}>
+            <div class="card" style={{width: 400}}>
+                <img src={imageCard} class="card-img-top" alt="under-construction" />
+                <div class="card-body">
+                    <p class="card-text text-center">CARRITO UNDER CONSTRUCTION</p>
+                </div>
+            </div>
+        </div>
         </>
 )};
 

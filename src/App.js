@@ -3,8 +3,8 @@ import './App.css';
 import Home from './components/home';
 import NavBar from './components/navBar';
 import Cart from './components/cart';
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import ItemDetailContainer from './components/itemDetailContainer';
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
