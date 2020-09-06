@@ -5,7 +5,6 @@ function Item ({products}) {
     
 
     const ToDetail = (id) => {
-        console.log('ir a item', id)
     }
  
     return products.map((p, idx) => 
@@ -17,7 +16,6 @@ function Item ({products}) {
                 <div class="card-body">
                     <h5 class="card-title" >{p.name} {p.brand} {p.color}</h5>
                     <button type='button' class='btn btn-outline-dark btn-sm btn-block'>Detalle</button>
-                    <button type='button' class='btn btn-outline-dark btn-sm btn-block'>Agregar al carrito</button>
                 </div>
             </div>
             </>)

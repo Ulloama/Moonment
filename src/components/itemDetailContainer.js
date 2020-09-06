@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import ProductStore from './productStore'
 import { useParams } from 'react-router-dom';
 import ItemCount from './itemCount';
+import { getFirestore } from '../firebase';
 
 
 /* function Detail() {
@@ -10,13 +11,13 @@ import ItemCount from './itemCount';
             res (ProductStore)},
             3000);
     });
-}; */
+}; 
 
 const getItem = (id) => {
     const items = ProductStore({id}).find(i => i.id === id);
-    console.log(items);
     return items;
-}
+}*/
+
 
 function ItemDetailContainer() {
     const {id} = useParams ();
@@ -24,10 +25,19 @@ function ItemDetailContainer() {
     const [loading, setLoading] = useState(true);
 
     useEffect (() => {
-            setItems(getItem(id));
-            setLoading(false)
-        
-    }, [id]);
+        const db = getFirestore();
+
+        const itemCollection = db.collection('items');
+        const priceyItems = itemCollection.where('price', '>', 200);
+
+        priceyItems.get().then((querySnapshot) => {
+            if(querySnapshot.size === 0) {
+                console.log('No existen items de mas de $200.')
+            }
+            setLoading(false);
+            setItems(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id})));
+        });
+    },[id]);
 
     return <>
             {loading && 
@@ -35,7 +45,9 @@ function ItemDetailContainer() {
                 <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
             </div>}
 
-            {items &&
+            <itemDetail items={items}></itemDetail>
+
+{/*             {items &&
                 <div class="container" key={items.id} style={{ paddingTop: 30 }}>
                     <div class='row'>
                         <div class="col-md-6"><img src={items.img} class='rounded' style={{ height: 500, width: 500 }} alt={items.name} /></div>
@@ -46,7 +58,9 @@ function ItemDetailContainer() {
                             </div>
                             <p>Talles disponibles: {items.size}.</p>
                             <div class="d-flex justify-content-center" style={{ paddingBottom: 10 }}>
-                                <div><ItemCount ini={items.ini} min={items.min} max={items.stock} /></div>
+                                <div>
+                                    <ItemCount ini={items.ini} min={items.min} max={items.stock} />
+                                </div>
                             </div>
                             <div style={{ paddingBottom: 30 }}>
                                 <button type='button' class='btn btn-outline-dark btn-block'>Agregar al carrito</button>
@@ -54,7 +68,7 @@ function ItemDetailContainer() {
                             <div style={{ textAlign: 'justify' }}><p><strong>{items.description}</strong></p></div>
                         </div>
                     </div>
-                </div>}
+                </div>} */}
     </>
 };
 

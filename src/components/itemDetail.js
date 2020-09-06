@@ -1,7 +1,7 @@
-/* import React from 'react';
+import React from 'react';
 import ItemCount from './itemCount';
 
-function ItemDetail() {
+function ItemDetail({items}) {
     return ( 
     <>
         <div class="container" key={items.id} style={{paddingTop: 30}}>
@@ -26,4 +26,4 @@ function ItemDetail() {
     </>)
     };
 
-export default ItemDetail; */
+export default ItemDetail;

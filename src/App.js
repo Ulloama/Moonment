@@ -4,6 +4,7 @@ import Home from './components/home';
 import NavBar from './components/navBar';
 import Cart from './components/cart';
 import ItemDetailContainer from './components/itemDetailContainer';
+import ContextCart from './components/contextCart';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
 
 function App() {
