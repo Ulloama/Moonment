@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from 'react';
-import ProductStore from './productStore'
 import { useParams } from 'react-router-dom';
-import ItemCount from './itemCount';
+import ItemDetail from './itemDetail';
 import { getFirestore } from '../firebase';
 
 
@@ -21,7 +20,7 @@ const getItem = (id) => {
 
 function ItemDetailContainer() {
     const {id} = useParams ();
-    const [items, setItems] = useState(null);
+    const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect (() => {
@@ -45,7 +44,7 @@ function ItemDetailContainer() {
                 <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
             </div>}
 
-            <itemDetail items={items}></itemDetail>
+            <ItemDetail items={items}/>
 
 {/*             {items &&
                 <div class="container" key={items.id} style={{ paddingTop: 30 }}>

@@ -2,7 +2,7 @@ import React from 'react';
 import ItemCount from './itemCount';
 
 function ItemDetail({items}) {
-    return ( 
+    return items.map((items, idx) =>
     <>
         <div class="container" key={items.id} style={{paddingTop: 30}}>
             <div class='row'>
