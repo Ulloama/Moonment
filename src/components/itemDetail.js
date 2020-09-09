@@ -1,7 +1,14 @@
-import React from 'react';
-import ItemCount from './itemCount';
+import React, { useState } from 'react';
+import ItemCount from './itemCount'
+import ButtonAddToCart from './buttonAddToCart';
 
 function ItemDetail({items}) {
+    const [totalCount, setTotalCount] = useState();
+
+    function SyncCount (totalCount) {
+        setTotalCount(totalCount);
+    };
+
     return items.map((items, idx) =>
     <>
         <div class="container" key={items.id} style={{paddingTop: 30}}>
@@ -14,10 +21,10 @@ function ItemDetail({items}) {
                     </div>
                     <p>Talles disponibles: {items.size}.</p>
                     <div class="d-flex justify-content-center" style={{ paddingBottom: 10 }}>
-                        <div><ItemCount ini={items.ini} min={items.min} max={items.stock} /></div>
+                        <div><ItemCount ini={items.ini} min={items.min} max={items.stock} onAdd={1} onChange={SyncCount}/></div>
                     </div>
                     <div style={{ paddingBottom: 30 }}>
-                        <button type='button' class='btn btn-outline-dark btn-block'>Agregar al carrito</button>
+                        <ButtonAddToCart totalCount={totalCount}/>
                     </div>
                     <div style={{ textAlign: 'justify' }}><p><strong>{items.description}</strong></p></div>
                 </div>

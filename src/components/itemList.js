@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import Items from './items';
-import ProductStore from './productStore';
+import { useParams } from 'react-router-dom';
 import { getFirestore } from '../firebase';
 
 
@@ -13,6 +13,7 @@ import { getFirestore } from '../firebase';
 }; */
 
 function ItemList () {
+    const {id} = useParams ();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -20,16 +21,17 @@ function ItemList () {
         const db = getFirestore();
 
         const itemCollection = db.collection('items');
-        const priceyItems = itemCollection.where('price', '>', 200);
+        //const priceyItems = itemCollection.where('price', '>', 200);
 
-        priceyItems.get().then((querySnapshot) => {
+        itemCollection.get().then((querySnapshot) => {
             if(querySnapshot.size === 0) {
                 console.log('No existen items de mas de $200.')
             }
             setLoading(false);
             setProducts(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id})));
+            //setProducts(querySnapshot.docs.map(doc => doc.data()));
         });
-    }, []);
+    }, [id]);
 
 
     return(<>

@@ -1,19 +1,12 @@
 import React, {useState , useEffect} from 'react';
 
-function ItemCount ({ini, min, max}) {
+function ItemCount ({ini, min, max, onAdd, onChange}) {
     const [count, setCount] = useState (ini);
 
-    function AddCount() {
-        if (count < max) {
-          setCount (count + 1)
-        }
-};
-      
-      function DeCount() {
-        if (count > min) {
-          setCount (count - 1)
-        }
-      };
+    const DeCount = () => setCount(count - onAdd);
+    const AddCount = () => setCount(count + onAdd);
+
+    useEffect(() => onChange(count));
 
     return (
     <div style={{paddingBottom: 10}}>
@@ -37,4 +30,3 @@ function ItemCount ({ini, min, max}) {
 };
 
 export default ItemCount;
-

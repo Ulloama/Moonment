@@ -6,6 +6,7 @@ function Item ({products}) {
     
 
     const ToDetail = (id) => {
+        console.log(id)
     }
  
     return products.map((p, idx) => 
