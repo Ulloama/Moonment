@@ -28,23 +28,21 @@ function ItemList () {
             }
             setLoading(false);
             setProducts(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id})));
-            //setProducts(querySnapshot.docs.map(doc => doc.data()));
         });
     }, [id]);
 
-
-    return(<>
+    return<>
             <div class="d-flex justify-content-center" style={{padding: 30}}>
                 {loading && 
                 <div class="d-flex justify-content-center" style={{padding: 50}}>
                     <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
                 </div>}
-                <div class="card-deck text-center">
+                <div class="row row-cols-1 row-cols-md-4">
                     <Items products={products}></Items>
                 </div>
             </div>
     </>
-)};
+};
 
 export default ItemList;
 

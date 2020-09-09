@@ -26,7 +26,7 @@ function ItemDetailContainer() {
         }).finally(() => {
             setLoading(false);
         });
-    },[]);
+    },[id]);
 
     return <>
             {loading && 

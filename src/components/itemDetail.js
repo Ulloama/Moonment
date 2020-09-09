@@ -9,8 +9,7 @@ function ItemDetail({items}) {
         setTotalCount(totalCount);
     };
 
-    return items.map((items, idx) =>
-    <>
+    return (<>
         <div class="container" key={items.id} style={{paddingTop: 30}}>
             <div class='row'>
                 <div class="col-md-6"><img src={items.img} class='rounded' style={{ height: 500, width: 500 }} alt={items.name} /></div>

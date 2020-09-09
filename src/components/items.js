@@ -11,15 +11,19 @@ function Item ({products}) {
  
     return products.map((p, idx) => 
             <>
-            <div class="card" key={p.id} onClick={() => ToDetail(`${p.id}`)}>
+        <div class="col mb-4">
+            <div class="card border-light" key={p.id} onClick={() => ToDetail(`${p.id}`)}>
                 <Link to={`/item/${p.id}`}>
-                    <img src={p.img} class="card-img-top" alt={p.name}/>
+                    <img src={p.img} class="card-img-top" style={{padding: 30}} alt={p.name}/>
                 </Link>
-                <div class="card-body">
+                <div class="card-body text-center">
                     <h5 class="card-title" >{p.name} {p.brand} {p.color}</h5>
-                    <button type='button' class='btn btn-outline-dark btn-sm btn-block'>Detalle</button>
+                    <Link to={`/item/${p.id}`}>
+                        <button type='button' class='btn btn-outline-dark btn-block'>Ver detalle</button>
+                    </Link>
                 </div>
             </div>
+        </div>
             </>)
 };
 
