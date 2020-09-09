@@ -13,7 +13,7 @@ import { getFirestore } from '../firebase';
 }; */
 
 function ItemList () {
-    const {id} = useParams ();
+    const {id} = useParams();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -21,7 +21,6 @@ function ItemList () {
         const db = getFirestore();
 
         const itemCollection = db.collection('items');
-        //const priceyItems = itemCollection.where('price', '>', 200);
 
         itemCollection.get().then((querySnapshot) => {
             if(querySnapshot.size === 0) {

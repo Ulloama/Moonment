@@ -4,7 +4,7 @@ import ItemDetail from './itemDetail';
 import { getFirestore } from '../firebase';
 
 function ItemDetailContainer() {
-    const {id} = useParams ();
+    const {id} = useParams();
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -12,9 +12,8 @@ function ItemDetailContainer() {
         const db = getFirestore();
 
         const itemCollection = db.collection('items');
-        const priceyItems = itemCollection.where('price', '>', 0);
 
-        priceyItems.get().then((querySnapshot) => {
+        itemCollection.get().then((querySnapshot) => {
             if(querySnapshot.size === 0) {
                 console.log('No existen items.')
             }
