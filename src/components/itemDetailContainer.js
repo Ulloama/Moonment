@@ -12,16 +12,21 @@ function ItemDetailContainer() {
         const db = getFirestore();
 
         const itemCollection = db.collection('items');
+        const items = itemCollection.doc(id);
 
-        itemCollection.get().then((querySnapshot) => {
-            if(querySnapshot.size === 0) {
-                console.log('No existen items.')
+        items.get().then((doc) => {
+            if (!doc.exists) {
+                console.log('El item no existe');
+                return;
             }
+            console.log('Item encontrado.');
+            setItems({ id: doc.id, ...doc.data() });
+        }).catch((error) => {
+            console.log('Error buscando items', error);
+        }).finally(() => {
             setLoading(false);
-            setItems(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id})));
-            //setItems(querySnapshot.docs.map(doc => doc.data()));
         });
-    },[id]);
+    },[]);
 
     return <>
             {loading && 
