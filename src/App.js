@@ -4,25 +4,24 @@ import Home from './components/home';
 import NavBar from './components/navBar';
 import Cart from './components/cart';
 import ItemDetailContainer from './components/itemDetailContainer';
-import ContextCart from './components/contextCart';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter>
-      <NavBar/>
-      <Switch>
-        <Route exact path='/'>
-          <Home/>
-        </Route>
-        <Route exact path='/item/:id'>
-          <ItemDetailContainer/>
-        </Route>
-        <Route exact path='/cart'>
-          <Cart/>
-        </Route>
-      </Switch>
-    </BrowserRouter>
+      <BrowserRouter>
+        <NavBar/>
+        <Switch>
+          <Route exact path='/'>
+            <Home/>
+          </Route>
+          <Route exact path='/item/:id'>
+            <ItemDetailContainer/>
+          </Route>
+          <Route exact path='/cart'>
+            <Cart/>
+          </Route>
+        </Switch>
+      </BrowserRouter>
 )};
 
 export default App;

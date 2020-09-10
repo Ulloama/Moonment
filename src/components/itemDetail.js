@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState , useContext} from 'react';
 import ItemCount from './itemCount'
 import ButtonAddToCart from './buttonAddToCart';
+import { useListCartProvider } from '../context/contextCart';
+
 
 function ItemDetail({items}) {
     const [totalCount, setTotalCount] = useState();
+    const { AddItem } = useListCartProvider();
 
     function SyncCount (totalCount) {
         setTotalCount(totalCount);
     };
 
-    return (<>
+    return <>
         <div class="container" key={items.id} style={{paddingTop: 30}}>
             <div class='row'>
                 <div class="col-md-6"><img src={items.img} class='rounded' style={{ height: 500, width: 500 }} alt={items.name} /></div>
@@ -23,13 +26,13 @@ function ItemDetail({items}) {
                         <div><ItemCount ini={items.ini} min={items.min} max={items.stock} onAdd={1} onChange={SyncCount}/></div>
                     </div>
                     <div style={{ paddingBottom: 30 }}>
-                        <ButtonAddToCart totalCount={totalCount}/>
+                        <ButtonAddToCart totalCount={totalCount}  onClick={() => AddItem('item agregado')}/>
                     </div>
                     <div style={{ textAlign: 'justify' }}><p><strong>{items.description}</strong></p></div>
                 </div>
             </div>
         </div>
-    </>)
+    </>
     };
 
 export default ItemDetail;

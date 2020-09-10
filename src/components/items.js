@@ -25,7 +25,6 @@ function Item ({products}) {
             </div>
         </div>
             </>)
-};
+}; 
 
 export default Item;
-
