@@ -1,12 +1,11 @@
 import React, { useState , useContext} from 'react';
 import ItemCount from './itemCount'
 import ButtonAddToCart from './buttonAddToCart';
-import { useListCartProvider } from '../context/contextCart';
+import { useContextCart } from '../context/contextCart';
 
 
 function ItemDetail({items}) {
     const [totalCount, setTotalCount] = useState();
-    const { AddItem } = useListCartProvider();
 
     function SyncCount (totalCount) {
         setTotalCount(totalCount);
@@ -26,7 +25,7 @@ function ItemDetail({items}) {
                         <div><ItemCount ini={items.ini} min={items.min} max={items.stock} onAdd={1} onChange={SyncCount}/></div>
                     </div>
                     <div style={{ paddingBottom: 30 }}>
-                        <ButtonAddToCart totalCount={totalCount}  onClick={() => AddItem('item agregado')}/>
+                        <ButtonAddToCart totalCount={totalCount}/>
                     </div>
                     <div style={{ textAlign: 'justify' }}><p><strong>{items.description}</strong></p></div>
                 </div>

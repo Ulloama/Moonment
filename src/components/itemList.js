@@ -32,12 +32,12 @@ function ItemList () {
     }, [id]);
 
     return<>
-            <div class="d-flex justify-content-center" style={{padding: 30}}>
+            <div className="d-flex justify-content-center" style={{padding: 30}}>
                 {loading && 
-                <div class="d-flex justify-content-center" style={{padding: 50}}>
-                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+                <div className="d-flex justify-content-center" style={{padding: 50}}>
+                    <div className="spinner-grow text-primary" role="status"><span className="sr-only">Loading...</span></div>
                 </div>}
-                <div class="row row-cols-1 row-cols-md-4">
+                <div className="row row-cols-1 row-cols-md-4">
                     <Items products={products}></Items>
                 </div>
             </div>

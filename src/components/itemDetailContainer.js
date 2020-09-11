@@ -30,8 +30,8 @@ function ItemDetailContainer() {
 
     return <>
             {loading && 
-            <div class="d-flex justify-content-center" style={{padding: 50}}>
-                <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+            <div classNameName="d-flex justify-content-center" style={{padding: 50}}>
+                <div classNameName="spinner-grow text-primary" role="status"><span classNameName="sr-only">Loading...</span></div>
             </div>}
             <ItemDetail items={items}/>
             </>

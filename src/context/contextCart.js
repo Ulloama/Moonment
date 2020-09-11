@@ -1,13 +1,13 @@
-import React, { useState, useContext, useDebugValue } from 'react';
+import React, { useState, useContext } from 'react';
 
 export const ContextCart = React.createContext([]);
 
-export const useListCartProvider = () => useContext(ContextCart);
+export const useContextCart = () => useContext(ContextCart);
 
 export function ListCartProvider ({value, children}) {
     const [list, setList] = useState (value || []);
 
-        function AddItem(newItem) {
+    function AddItem(newItem) {
         console.log('item agregado')
         const l = [...list, newItem];
         setList (l);

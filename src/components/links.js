@@ -11,14 +11,14 @@ function Links () {
                 <a className="nav-link" href="#">Inicio<span className="sr-only">(current)</span></a>
               </li>
           </Link>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Productos
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Remeras</a>
-                <a class="dropdown-item disabled" href="#">Pantalones</a>
-                <a class="dropdown-item disabled" href="#">Camperas</a>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item" href="#">Remeras</a>
+                <a className="dropdown-item disabled" href="#">Pantalones</a>
+                <a className="dropdown-item disabled" href="#">Camperas</a>
               </div>
             </li>
         </ul>
