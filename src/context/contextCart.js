@@ -4,7 +4,7 @@ export const ContextCart = React.createContext([]);
 
 export const useContextCart = () => useContext(ContextCart);
 
-export function ListCartProvider ({value, children}) {
+function ListCartProvider ({value, children}) {
     const [list, setList] = useState (value || []);
 
     function AddItem(newItem) {
@@ -23,3 +23,5 @@ export function ListCartProvider ({value, children}) {
 
 
 };
+
+export default ListCartProvider;

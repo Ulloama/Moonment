@@ -4,8 +4,11 @@ import ButtonAddToCart from './buttonAddToCart';
 import { useContextCart } from '../context/contextCart';
 
 
+
 function ItemDetail({items}) {
     const [totalCount, setTotalCount] = useState();
+    const { AddItem } = useContextCart();
+
 
     function SyncCount (totalCount) {
         setTotalCount(totalCount);

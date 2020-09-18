@@ -1,5 +1,6 @@
 import React from 'react';
-import { ListCartProvider, useContextCart } from '../context/contextCart';
+import { useContextCart } from '../context/contextCart';
+import ListCartProvider from '../context/contextCart';
 
 function Cart() {
     const { list, quantity, EmptyCart } = useContextCart();
@@ -10,14 +11,18 @@ function Cart() {
             <div className="card text-center" style={{width:800}}>
                 <div className="card-header"><strong>Carrito de compras</strong></div>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Cras justo odio</li>
+                {list.map(i => <li className="list-group-item">{i}</li>)}
                 </ul>
                 <div className='card-footer row'>
-                <div className="row col-sm-12"></div>
-                <div className="col-sm-6">
-                    <button style={{position: float}} type="button" className="btn btn-dark">Vaciar carrito</button>
-                    <button style={{position: float}} type="button" className="btn btn-dark">Comprar</button>
-                </div>
+                    <div className="row col-sm-12">
+                        <div className="row col-sm-7"></div>
+                        <div className="col-sm-3">
+                            <button type="button" className="btn btn-dark justify-content-end" onClick={ EmptyCart }>Vaciar carrito</button>
+                        </div>
+                        <div className="col-sm-2">
+                            <button type="button" className="btn btn-dark justify-content-end">Comprar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
