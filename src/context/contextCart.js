@@ -4,8 +4,8 @@ export const ContextCart = React.createContext([]);
 
 export const useContextCart = () => useContext(ContextCart);
 
-function ListCartProvider ({value, children}) {
-    const [list, setList] = useState (value || []);
+export function ListCartProvider ({value = [], children}) {
+    const [list, setList] = useState (value);
 
     function AddItem(newItem) {
         console.log('item agregado')
@@ -20,8 +20,4 @@ function ListCartProvider ({value, children}) {
     return <ContextCart.Provider value={{ list, AddItem, quantity: list.length, EmptyCart }}>
         {children}
     </ContextCart.Provider>
-
-
 };
-
-export default ListCartProvider;

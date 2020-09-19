@@ -16,10 +16,8 @@ function ItemDetailContainer() {
 
         items.get().then((doc) => {
             if (!doc.exists) {
-                console.log('El item no existe');
                 return;
             }
-            console.log('Item encontrado.');
             setItems({ id: doc.id, ...doc.data() });
         }).catch((error) => {
             console.log('Error buscando items', error);

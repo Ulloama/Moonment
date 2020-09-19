@@ -9,7 +9,6 @@ function ItemDetail({items}) {
     const [totalCount, setTotalCount] = useState();
     const { AddItem } = useContextCart();
 
-
     function SyncCount (totalCount) {
         setTotalCount(totalCount);
     };
@@ -28,8 +27,11 @@ function ItemDetail({items}) {
                         <div><ItemCount ini={items.ini} min={items.min} max={items.stock} onAdd={1} onChange={SyncCount}/></div>
                     </div>
                     <div style={{ paddingBottom: 30 }}>
-                        <ButtonAddToCart totalCount={totalCount}/>
-                    </div>
+
+                        <button type='button' class='btn btn-outline-dark btn-block' onClick={()=> AddItem(items)}>Agregar al carrito ({totalCount})</button>
+                        
+{                        /*<ButtonAddToCart totalCount={totalCount}/>*/
+}                    </div>
                     <div style={{ textAlign: 'justify' }}><p><strong>{items.description}</strong></p></div>
                 </div>
             </div>

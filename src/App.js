@@ -5,7 +5,7 @@ import NavBar from './components/navBar';
 import Cart from './components/cart';
 import ItemDetailContainer from './components/itemDetailContainer';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
-import ListCartProvider from './context/contextCart';
+import { ListCartProvider } from './context/contextCart';
 
 function App() {
   return (
