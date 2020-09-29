@@ -1,0 +1,7 @@
+.btn .badge {
+	position: absolute;
+	right: -5px;
+	border-radius: 50%;
+	background: #333;
+	color: white;
+}

@@ -1,35 +1,57 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { CartLoader } from './cartLoader';
 import { useContextCart } from '../context/contextCart';
-
+ 
 function Cart() {
-    const { list, EmptyCart } = useContextCart();
+    const [loading, setLoading] = useState(true);
+    const { quantity } = useContextCart();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
 
-    return ( 
-        <>
-        <div className="d-flex justify-content-center" style={{padding: 15}}>
-            <div className="card text-center" style={{width:800}}>
-                <div className="card-header"><strong>Carrito de compras</strong></div>
-                <ul className="list-group list-group-flush">
-                {list.map(i => <li className="list-group-item">{i.name}</li>)}
-                </ul>
-                <div className='card-footer row'>
-                    <div className="row col-sm-12">
-                        <div className="row col-sm-7"></div>
-                        <div className="col-sm-3">
-                            <button type="button" className="btn btn-dark justify-content-end" onClick={ EmptyCart }>Vaciar carrito</button>
-                        </div>
-                        <div className="col-sm-2">
-                            <button type="button" className="btn btn-dark justify-content-end">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
- </>)
+
+    const buyerName = (evt) => setName(evt.target.value);
+    const buyerEmail = (evt) => setEmail(evt.target.value);
+    const buyerPhone = (evt) => setPhone(evt.target.value);
+
+     const order = { 
+        buyer: { name , phone, email },
+ }
+
+
+/*     function createOrder() {
+        const buyer = {
+            name: '',
+            phone: '',
+            email: '',
+        }
+
+        const order = {
+            buyer,
+            items: [],
+            date: '',
+            total: '',
+        }
+
+        const item = [{
+            id: '',
+            title: '',
+            price: '',
+            quantity: '',
+         }]
+    } */
+
+
+    useEffect (() => {
+        if ( quantity === 0 ) {
+            setLoading(false);
+        };
+    },[quantity]);
+
+    return  <>
+            <CartLoader loading={loading} buyerEmail={buyerEmail} buyerName={buyerName} buyerPhone={buyerPhone}/>
+    </>
 
 };
 
 export default Cart;
-
-            {/*           <ul>{list.map(i => <li>{i}</li>)}</ul>
- */} 

@@ -6,19 +6,18 @@ function Item ({products}) {
     
 
     const ToDetail = (id) => {
-        console.log(id)
     }
  
-    return products.map((p, idx) => 
+    return products.map((p) => 
             <>
         <div className="col mb-4">
             <div className="card border-light" key={p.id} onClick={() => ToDetail(`${p.id}`)}>
-                <Link to={`/item/${p.id}`}>
+                <Link to={`/item/${p.id}`} key={p.id}>
                     <img src={p.img} className="card-img-top" style={{padding: 30}} alt={p.name}/>
                 </Link>
                 <div className="card-body text-center">
                     <h5 className="card-title" >{p.name} {p.brand} {p.color}</h5>
-                    <Link to={`/item/${p.id}`}>
+                    <Link to={`/item/${p.id}`} key={p.id}>
                         <button type='button' className='btn btn-outline-dark btn-block'>Ver detalle</button>
                     </Link>
                 </div>
@@ -27,4 +26,4 @@ function Item ({products}) {
             </>)
 }; 
 
-export default Item;
+export default Item; 

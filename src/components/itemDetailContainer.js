@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from './itemDetail';
 import { getFirestore } from '../firebase';
+import { Loader } from './loader';
 
 function ItemDetailContainer() {
     const {id} = useParams();
@@ -26,13 +27,10 @@ function ItemDetailContainer() {
         });
     },[id]);
 
-    return <>
-            {loading && 
-            <div classNameName="d-flex justify-content-center" style={{padding: 50}}>
-                <div classNameName="spinner-grow text-primary" role="status"><span classNameName="sr-only">Loading...</span></div>
-            </div>}
-            <ItemDetail items={items}/>
-            </>
+    const componentItemDetail = <ItemDetail items={items}/>
+
+    return <Loader loading={loading} component={componentItemDetail}/>
+    
 };
 
 export default ItemDetailContainer;
