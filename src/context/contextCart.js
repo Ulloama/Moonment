@@ -6,11 +6,13 @@ export const useContextCart = () => useContext(ContextCart);
 
 export function ListCartProvider ({initialValue = [], children}) {
     const [list, setList] = useState (initialValue);
-    const [totalCount, setTotalCount] = useState();
+    const [totalQ, setTotalQ] = useState(0);
 
     function AddItem(newItem) {
+        const suma = totalQ + newItem.quantity
         const l = [...list, newItem];
         setList (l);
+        setTotalQ(suma);
     };
 
     function deleteItem(oldItem) {
@@ -20,33 +22,38 @@ export function ListCartProvider ({initialValue = [], children}) {
 
     function EmptyCart() {
         setList ([]);
+        setTotalQ(0);
     };
 
-    const reduceList = list.reduce((acumulador, newItem) => {
+    const cart = list.reduce((acumulador, newItem) => {
         const itemExist = acumulador.find(item => item.id === newItem.id);
         if (itemExist) {
             return acumulador.map((item) => {
                 if (item.id === newItem.id) {
                     return {
                         ...item,
-                        price: item.price + newItem.price,
+                            quantity: item.quantity + newItem.quantity,
                     }
                 }
-
                 return item;
             })
         }
         return [...acumulador, newItem];
     }, []);
 
-    const total = reduceList.reduce((prev, next) => prev + next.price, 0);
+    const totalP = cart.reduce((prev, next) => prev + next.price * next.quantity, 0);
 
-    function SyncCount (totalCount) {
-        setTotalCount(totalCount);
-    };
+    const itemsCart = cart.map(cartItems => ({
+        id: cartItems.id,
+        title: cartItems.name,
+        brand: cartItems.brand,
+        color: cartItems.color,
+        price: cartItems.price,
+        quantity: cartItems.quantity})
+    );
 
     return( 
-        <ContextCart.Provider value={{ totalCount, SyncCount, list, AddItem, deleteItem, quantity: list.length, EmptyCart, reduceList, total }}>
+        <ContextCart.Provider value={{ list, AddItem, deleteItem, quantityL: list.length, EmptyCart, cart, totalQ, totalP, itemsCart}}>
             {children}
         </ContextCart.Provider>
     );

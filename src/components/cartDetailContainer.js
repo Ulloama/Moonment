@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 import { CartForm } from './cartForm';
 import { CartDetail } from './cartDetail'
 
-export function CartDetailContainer({buyerEmail, buyerName, buyerPhone}) {
+export function CartDetailContainer({setBuyerInfo, createOrder, buyer}) {
     const [showForm, setShowForm] = useState(false);
-    const onClick = () => setShowForm(true)
+    const showF = () => {setShowForm(true); }
 
     return (
         <>
-            <CartDetail onClick={onClick}/>
-            {showForm ? <CartForm buyerEmail={buyerEmail} buyerName={buyerName} buyerPhone={buyerPhone}/> : null}
+        <div className="d-flex justify-content-center" style={{ padding: 15 }}>
+            <div className="container" style={{ width: 800 }}>
+                <CartDetail checkout={showF}/>
+                {showForm ? <CartForm setBuyerInfo={setBuyerInfo} buyer={buyer} createOrder={createOrder}/> : null}
+            </div>
+        </div>
         </>)
 };
+//            

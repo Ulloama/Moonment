@@ -4,11 +4,13 @@ import Items from './items'
 import { useParams } from 'react-router-dom';
 import { getFirestore } from '../firebase';
 import { Loader } from './loader';
+import { ErrorDetail } from './errorDetail';
 
 function Home () {
     const { categoryId = undefined} = useParams();
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(null);
+    const [error, setError] = useState(true);
 
     useEffect(() => {
         const db = getFirestore();
@@ -20,11 +22,11 @@ function Home () {
 
         filteredItems.get().then((querySnapshot) => {
             if(querySnapshot.size === 0) {
-                console.log('No hay items en esta categoria');
+                setError(false);
             }
             setItems(querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-            }).catch((error) => {
-                console.log('Error buscando items', error);
+            }).catch(() => {
+                setError(false);
             }).finally(() => {
                 setLoading(false);
             });
@@ -37,7 +39,7 @@ function Home () {
 
     return <>
             <Greeting/>
-            <Loader loading={loading} component={componentItems}/>
+            {error === false ? <ErrorDetail/> : <Loader loading={loading} component={componentItems}/>}
         </>
 };
 

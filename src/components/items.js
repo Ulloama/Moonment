@@ -13,10 +13,11 @@ function Item ({products}) {
         <div className="col mb-4">
             <div className="card border-light" key={p.id} onClick={() => ToDetail(`${p.id}`)}>
                 <Link to={`/item/${p.id}`} key={p.id}>
-                    <img src={p.img} className="card-img-top" style={{padding: 30}} alt={p.name}/>
+                    <img src={p.img} className="card-img-top" alt={p.name}/>
                 </Link>
                 <div className="card-body text-center">
                     <h5 className="card-title" >{p.name} {p.brand} {p.color}</h5>
+                    <h6 style={{ paddingBottom:20 }}>${p.price}</h6>
                     <Link to={`/item/${p.id}`} key={p.id}>
                         <button type='button' className='btn btn-outline-dark btn-block'>Ver detalle</button>
                     </Link>

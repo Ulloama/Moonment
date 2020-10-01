@@ -5,15 +5,15 @@ import '../assets/styles/icons/css/styles.css'
 import { useContextCart } from '../context/contextCart';
 
 function CartIcon () {
-    const { quantity } = useContextCart();
-    const [totalQ, setTotalQ] = useState();
+    const { totalQ } = useContextCart();
+    const [quantityT, setQuantityT] = useState();
 
     useEffect (() => {
-        if ( quantity === 0 ) {
-            setTotalQ(null);
+        if ( totalQ === 0 ) {
+            setQuantityT(null);
         } else {
-            setTotalQ(quantity)}
-    }, [quantity]);
+            setQuantityT(totalQ)}
+    }, [totalQ]);
 
     return( <>
         <ul className="navbar-nav ml-md-auto justify-content-end">
@@ -21,7 +21,7 @@ function CartIcon () {
                 <li className="nav-item dropdown" >
                     <button className="btn btn-light">
                         <span className="icon-cart"></span>
-                        <span className="badge">{totalQ}</span>
+                        <span className="badge">{quantityT}</span>
                     </button>
                 </li>
             </Link>

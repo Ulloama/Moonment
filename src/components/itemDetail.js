@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import ItemCount from './itemCount'
 import ButtonAddToCart from './buttonAddToCart';
-import { useContextCart } from '../context/contextCart';
 
 function ItemDetail({items}) {
-    const { totalCount, SyncCount} = useContextCart();
-    //const [totalCount, setTotalCount] = useState();
+    const [totalCount, setTotalCount] = useState();
 
-/*     function SyncCount (totalCount) {
+     function SyncCount (totalCount) {
         setTotalCount(totalCount);
-    }; */
+    };
 
     return <>
         <div className="container" key={items.id} style={{paddingTop: 30}}>
@@ -32,6 +30,6 @@ function ItemDetail({items}) {
             </div>
         </div>
     </>
-    }
+}
 
 export default ItemDetail;
